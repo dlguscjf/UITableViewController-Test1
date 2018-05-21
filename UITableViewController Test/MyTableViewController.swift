@@ -10,10 +10,13 @@ import UIKit
 
 class MyTableViewController: UITableViewController {
     
-    var data = ["홍길동","임꺽정","이순신","세종대왕","이이"]
+    var foodnames = ["늘해랑","번개반점","아딸","왕짜장","토마토 도시락","홍콩반점"]
+    var foodThumbail = ["01","02","03","04","05","06"]
+    var foodAddress = ["부산광역시 부산진구 양정1동 350-1","부산광역시 부산진구 양정동 418-282","부산광역시 부산진구 양정동 393-18","부산광역시 부산진구 양정1동 356-22","부산광역시 부산진구 양정동","부산광역시 부산진구 양정1동 중앙대로 902"]
+    var foodTel = ["051-852-9969","051-853-0410","051-853-0410","051-853-0410","051-853-0410","051-853-0410"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "위인모음"
+        self.title = "배달음식점"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -35,15 +38,18 @@ class MyTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return foodnames.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RE", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row]
-        
-
+            as! foodTableViewCell
+       
+        cell.foodcellname.text = foodnames[indexPath.row]
+        cell.foodcellimage.image = UIImage(named: foodThumbail[indexPath.row])
+        cell.foodcelladdress.text = foodAddress[indexPath.row]
+        cell.foodcelltel.text = foodTel[indexPath.row]
         return cell
     }
     
