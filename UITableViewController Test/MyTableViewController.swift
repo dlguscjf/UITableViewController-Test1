@@ -53,7 +53,22 @@ class MyTableViewController: UITableViewController {
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 전화걸기 alert
+        let optionMenu = UIAlertController(title : "전화걸기 : " + foodnames[indexPath.row], message: foodTel[indexPath.row], preferredStyle: .actionSheet)
+        let call = UIAlertController(title : "전화중 " + foodnames[indexPath.row], message: foodTel[indexPath.row], preferredStyle: .alert)
+         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler:nil)
+        let callAction = UIAlertAction(title : "전화를 거시겠습니까.", style: .default){
+            (action: UIAlertAction) -> Void in
+            call.addAction(cancelAction)
+             self.present(call, animated: true, completion: nil)
+        }
+       
+      
+        optionMenu.addAction(callAction)
+        optionMenu.addAction(cancelAction)
+        present(optionMenu, animated: true, completion: nil)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
